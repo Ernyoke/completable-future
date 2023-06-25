@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.api.Timeout;
 import victor.training.performance.completableFuture.CaptureSystemOutput.OutputCapture;
-import victor.training.performance.completableFuture.solution.BasicsSolved;
 import victor.training.performance.completableFuture.util.PerformanceUtil;
 
 import java.util.concurrent.CompletableFuture;

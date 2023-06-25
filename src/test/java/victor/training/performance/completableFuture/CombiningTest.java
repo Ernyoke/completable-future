@@ -13,7 +13,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import victor.training.performance.completableFuture.CaptureSystemOutput.OutputCapture;
 import victor.training.performance.completableFuture.Combining.Dependency;
-import victor.training.performance.completableFuture.solution.CombiningSolved;
 import victor.training.performance.completableFuture.util.PerformanceUtil;
 
 import java.util.concurrent.CompletableFuture;

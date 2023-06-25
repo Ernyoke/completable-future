@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CompletionException;
 import java.util.concurrent.ExecutionException;
 
 public class Basics {
@@ -16,7 +17,7 @@ public class Basics {
      * Create a completed future with the value "Hi"
      */
     public CompletableFuture<String> p01_completed() {
-        return null;
+        return CompletableFuture.supplyAsync(() -> "Hi");
     }
 
     // ==================================================================================================
@@ -27,7 +28,10 @@ public class Basics {
      * Note: a method returning CompletableFuture is NOT allowed to throw exceptions, so this is a good practice!👌
      */
     public CompletableFuture<String> p02_failed(boolean failed) {
-        return null;
+        if (failed) {
+            return CompletableFuture.failedFuture(new IllegalArgumentException());
+        }
+        return p01_completed();
     }
 
     // ==================================================================================================
@@ -37,7 +41,7 @@ public class Basics {
      * Note: only runtime exceptions
      */
     public String p03_join(CompletableFuture<String> future) {
-        return null;
+        return future.join();
     }
 
     // ==================================================================================================
@@ -48,7 +52,11 @@ public class Basics {
      * Note: the original exception comes wrapped in another exception - guess which one?
      */
     public String p04_joinException(CompletableFuture<String> future) {
-        return null;
+        try {
+            return future.join();
+        } catch (CompletionException e) {
+            return e.getCause().getMessage();
+        }
     }
 
     // ==================================================================================================
@@ -60,7 +68,12 @@ public class Basics {
      * #Play: note the InterruptedException; try to .cancel(true) the future and see what happens.
      */
     public String p05_get(CompletableFuture<String> future) throws InterruptedException, ExecutionException {
-        return null;
+//        future.cancel(true);
+        try {
+            return future.get();
+        } catch (ExecutionException e) {
+            return e.getCause().getMessage();
+        }
     }
 
 
@@ -71,7 +84,7 @@ public class Basics {
      * Hint: use a method ending in ..Async(Runnable)
      */
     public void p06_run() {
-
+        CompletableFuture.runAsync(() -> System.out.println("Hi"));
     }
 
     // ==================================================================================================
@@ -82,7 +95,11 @@ public class Basics {
      * Play: what is that thread name? Google that thread name [2 min].
      */
     public CompletableFuture<String> p07_supply() {
-        return null;
+        return CompletableFuture.supplyAsync(() -> {
+            var name = Thread.currentThread().getName();
+            System.out.println(name);
+            return name;
+        });
     }
     // ==================================================================================================
 
@@ -90,7 +107,7 @@ public class Basics {
      * Print the value in the future, whenever it's ready.
      */
     public void p08_accept(CompletableFuture<String> future) {
-
+        future.thenAccept(System.out::println);
     }
 
 

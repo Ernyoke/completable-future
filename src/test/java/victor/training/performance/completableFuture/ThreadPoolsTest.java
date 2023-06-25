@@ -9,7 +9,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
-import victor.training.performance.completableFuture.solution.ThreadPoolsSolved;
 import victor.training.performance.completableFuture.util.PerformanceUtil;
 
 import java.util.concurrent.CompletableFuture;

@@ -9,7 +9,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import victor.training.performance.completableFuture.CaptureSystemOutput.OutputCapture;
 import victor.training.performance.completableFuture.Enrich.A;
 import victor.training.performance.completableFuture.Enrich.B;
-import victor.training.performance.completableFuture.solution.EnrichSolved;
 
 import java.util.concurrent.ExecutionException;
 
